@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mova Tila</title>
+  <title>Private Advent Calendar</title>
   <style>
     body {
       margin: 0;
@@ -14,7 +14,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      flex-direction: column;
     }
 
     /* LOGIN SCREEN */
@@ -42,7 +43,7 @@
       font-size: 1rem;
     }
 
-    /* DAYS GRID */
+    /* CALENDAR */
     #calendar {
       display: none;
       width: 90%;
@@ -66,18 +67,22 @@
       border-radius: 12px;
       text-align: center;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .day:hover {
+      background: #333;
     }
 
     .locked {
       opacity: 0.3;
       pointer-events: none;
     }
-
   </style>
 </head>
 <body>
 
-  <!-- LOGIN WINDOW -->
+  <!-- LOGIN -->
   <div id="login">
     <h2>Private Advent Calendar</h2>
     <p>Enter password ❤️</p>
@@ -86,45 +91,41 @@
     <button onclick="checkPassword()">Enter</button>
   </div>
 
-  <!-- MAIN CALENDAR -->
+  <!-- CALENDAR -->
   <div id="calendar">
     <h1>Advent Calendar</h1>
-    <div class="grid">
-      <div class="day" onclick="openDay(1)">1</div>
-      <div class="day" onclick="openDay(2)">2</div>
-      <div class="day locked">3</div>
-      <div class="day locked">4</div>
-      <div class="day locked">5</div>
-      <div class="day locked">6</div>
-      <div class="day locked">7</div>
-      <div class="day locked">8</div>
-      <div class="day locked">9</div>
-      <div class="day locked">10</div>
-      <div class="day locked">11</div>
-      <div class="day locked">12</div>
-      <div class="day locked">13</div>
-      <div class="day locked">14</div>
-      <div class="day locked">15</div>
-      <div class="day locked">16</div>
-      <div class="day locked">17</div>
-      <div class="day locked">18</div>
-      <div class="day locked">19</div>
-      <div class="day locked">20</div>
-      <div class="day locked">21</div>
-      <div class="day locked">22</div>
-      <div class="day locked">23</div>
-      <div class="day locked">24</div>
-    </div>
+    <div class="grid" id="daysGrid"></div>
   </div>
 
   <script>
+    const PASSWORD = "18110139611"; // ← тут змінюєш пароль
+    const UNLOCKED_DAYS = [1]; // ← тут вказуєш відкриті дні
+
     function checkPassword() {
       const pass = document.getElementById("password").value;
-      if (pass === "18110139611") { // YOU CAN CHANGE PASSWORD HERE
+      if (pass === PASSWORD) {
         document.getElementById("login").style.display = "none";
         document.getElementById("calendar").style.display = "block";
+        renderDays();
       } else {
         alert("Wrong password 😘");
+      }
+    }
+
+    function renderDays() {
+      const grid = document.getElementById("daysGrid");
+      for (let i = 1; i <= 4; i++) {
+        const day = document.createElement("div");
+        day.className = "day";
+        day.textContent = i;
+
+        if (UNLOCKED_DAYS.includes(i)) {
+          day.onclick = () => openDay(i);
+        } else {
+          day.classList.add("locked");
+        }
+
+        grid.appendChild(day);
       }
     }
 
@@ -133,76 +134,5 @@
     }
   </script>
 
-</body>
-</html>
-
-<!-- day1.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 1</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
-    }
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 12px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .photo {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      background: #000;
-      height: 350px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #555;
-      font-size: 1.2rem;
-    }
-    p {
-      font-size: 1rem;
-      line-height: 1.5rem;
-      text-align: center;
-      color: #ccc;
-    }
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #e63946;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Day 1</h1>
-        
-    <div class="photo">
-      <img src="images/day1.PNG" alt="Day 1">
-    </div>
-
-    <p>
-      забирій, я віддаюсь
-    </p>
-
-    <a href="index.html" class="back">← Back to Calendar</a>
-  </div>
 </body>
 </html>

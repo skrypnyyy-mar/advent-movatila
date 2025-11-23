@@ -114,6 +114,7 @@
 
     function renderDays() {
       const grid = document.getElementById("daysGrid");
+      grid.innerHTML = "";
       for (let i = 1; i <= 4; i++) {
         const day = document.createElement("div");
         day.className = "day";

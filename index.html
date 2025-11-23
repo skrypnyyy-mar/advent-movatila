@@ -1,29 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Advent</title>
-    <style>
-        body {
-            margin: 0;
-            background: #0d0d0d;
-            color: #e5e5e5;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            flex-direction: column;
-        }
-        .locked {
-            font-size: 22px;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Advent Calendar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* LOGIN SCREEN */
+    #login {
+      text-align: center;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      width: 200px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #e63946;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* DAYS GRID */
+    #calendar {
+      display: none;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .day {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .locked {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+  </style>
 </head>
 <body>
-    <h1>🎁 Advent Surprise</h1>
-    <p class="locked">Перевірь завтра 😉</p>
+
+  <!-- LOGIN WINDOW -->
+  <div id="login">
+    <h2>Private Advent Calendar</h2>
+    <p>Enter password ❤️</p>
+    <input type="password" id="password" placeholder="Password" />
+    <br>
+    <button onclick="checkPassword()">Enter</button>
+  </div>
+
+  <!-- MAIN CALENDAR -->
+  <div id="calendar">
+    <h1>Advent Calendar</h1>
+    <div class="grid">
+      <div class="day" onclick="openDay(1)">1</div>
+      <div class="day" onclick="openDay(2)">2</div>
+      <div class="day locked">3</div>
+      <div class="day locked">4</div>
+      <div class="day locked">5</div>
+      <div class="day locked">6</div>
+      <div class="day locked">7</div>
+      <div class="day locked">8</div>
+      <div class="day locked">9</div>
+      <div class="day locked">10</div>
+      <div class="day locked">11</div>
+      <div class="day locked">12</div>
+      <div class="day locked">13</div>
+      <div class="day locked">14</div>
+      <div class="day locked">15</div>
+      <div class="day locked">16</div>
+      <div class="day locked">17</div>
+      <div class="day locked">18</div>
+      <div class="day locked">19</div>
+      <div class="day locked">20</div>
+      <div class="day locked">21</div>
+      <div class="day locked">22</div>
+      <div class="day locked">23</div>
+      <div class="day locked">24</div>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("password").value;
+      if (pass === "1234") { // YOU CAN CHANGE PASSWORD HERE
+        document.getElementById("login").style.display = "none";
+        document.getElementById("calendar").style.display = "block";
+      } else {
+        alert("Wrong password 😘");
+      }
+    }
+
+    function openDay(num) {
+      window.location.href = `day${num}.html`;
+    }
+  </script>
+
+</body>
+</html>
+
+<!-- day1.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 1</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .photo {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      background: #000;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555;
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      text-align: center;
+      color: #ccc;
+    }
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #e63946;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Day 1</h1>
+
+    <div class="photo">(insert your photo here)</div>
+
+    <p>
+      Your message for him here. Something warm, teasing, minimalistic.
+    </p>
+
+    <a href="index.html" class="back">← Back to Calendar</a>
+  </div>
 </body>
 </html>
